@@ -35,12 +35,12 @@ const useGames = () => {
         apiClient.get<FetchGamesResponse>('/games', {signal:controller.signal})
             .then(res => {
                 setGames(res.data.results)
-                //setLoading(false)
+                setLoading(false)
             })//update loading state
             .catch(err => {
                 if(err instanceof CanceledError) return;
                 setError(err.message)
-                //setLoading(false)
+                setLoading(false)
             });
             
         return () => controller.abort();// return a cleanup functn inside a request    
